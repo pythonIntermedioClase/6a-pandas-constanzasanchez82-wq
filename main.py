@@ -14,6 +14,8 @@ import numpy as np
 import pandas as pd
 from datetime import date
 
+from src.data_loader import cargar_declaraciones
+
 # Sección 3:
 # from src.data_loader import cargar_declaraciones
 #
@@ -139,11 +141,53 @@ def main():
 
     print("  Hasta luego.")
 
+####Ejercicio 1:
+def revisar_declaracion(declaracion):
+#    declaracion = {
+#    "nit": "900123456-1",
+#    "razon_social": "Comercializadora Andina S.A.S",
+#    "valor_declarado": 4_500_000,
+#    "estado": "Presentada",
+#    "municipio": "Bogotá",
+#}
+    print(declaracion)
+#.items()
+
+
+####Ejercicio 2:
+def probar_acceso_serie():
+    serie = pd.Series([100, 200, 300])
+    print(serie[1])
+    
+#Ej. basico: que construya un DataFrame con datos de cuatro contribuyentes, 
+# cada fila con los campos nit, razon_social, municipio y valor_declarado, e imprima .index, .columns y .shape.    
+def explorar_dataframe():
+    datos = {
+        "nit": ["Ana", "Luis", "Carlos", "María"],
+        "razon_social": ["Abc_ltda", "LCS", "XYZ_S.A.", "PQR_Ltda"],
+        "municipio": ["Bogotá", "Medellín", "Cali", "Barranquilla"],
+        "valor_declarado": [1000, 2000, 3000, 4000]
+    }
+    df = pd.DataFrame(datos)
+    print(df)    
+    print(df.index)
+    print(df.columns)
+    print(df.shape)
+    df.to_excel("declaraciones_ejemplo.xlsx", index=False)
+    #pass   
+
+#df = pd.read_csv("data/inputs/declaraciones_iva_2025.csv")    
+#def cargar_declaraciones(ruta, columnas=None):    
+#pass
 
 # =============================================================================
 # PUNTO DE ENTRADA
 # =============================================================================
 
 if __name__ == "__main__":
-    main()
+    df= cargar_declaraciones("data/outputs/declaraciones_iva_2025.csv")
+    #revisar_declaracion()
+    #probar_acceso_serie()
+    #explorar_dataframe()  #basico
+    #main()
 
