@@ -5,7 +5,8 @@ Sesión 6: Pandas I — Python Intermedio para Análisis de Datos · DIAN 2026
 """
 
 import pandas as pd
-
+#from src.data_loader import cargar_declaraciones
+#from src.data_transformer import clasificar_por_valor
 
 def cargar_declaraciones(ruta, columnas=None):
     """
@@ -24,17 +25,21 @@ def cargar_declaraciones(ruta, columnas=None):
         cargar_declaraciones("datos/declaraciones_iva_2025.csv", columnas=["nit", "valor_declarado"])
     """
     # TODO: Usa pd.read_csv() para cargar el archivo desde `ruta`.
-    # Fuerza las columnas "nit" y "codigo_municipio" a tipo str con el parámetro dtype.
-    # Si se recibe una lista en `columnas`, úsala en el parámetro usecols.
+    # Fuerza las columnas "nit" y "codigo_municipio" a tipo str 
+    # Si se recibe una lista en `columnas`, úsala
     # Si `columnas` es None, carga todas las columnas.
     # Retorna el DataFrame cargado.
-    pass
-    #df = pd.read_csv("data/inputs/declaraciones_iva_2025.csv",
-#
-    #dtype={"nit": str, "codigo_municipio": str})
-#
-    #print(df["codigo_municipio"].dtype)    # → object
-    #print(df["codigo_municipio"].iloc[0])
+    #pass
+    df = pd.read_csv("data/inputs/declaraciones_iva_2025.csv",  dtype={"nit": str, "codigo_municipio": str})
+
+    print(df["codigo_municipio"].dtype)  
+    print(df["codigo_municipio"].iloc[0])
+    print(df.shape)      # (filas, columnas)
+    print(df.head())     # primeras 5 filas
+    print(df.tail())     # últimas 5 filas
+    print(df.sample(5))  # 5 filas aleatorias
+    print(df.dtypes)
+    df.info()
 
 def inspeccionar_datos(df):
     """
@@ -49,11 +54,6 @@ def inspeccionar_datos(df):
     Returns:
         None
     """
-    # TODO: Imprime los siguientes elementos con etiquetas claras:
-    # 1. df.shape
-    # 2. df.dtypes
-    # 3. df.isnull().sum()
-    # 4. df.duplicated().sum()
     pass
 
 
@@ -75,8 +75,7 @@ def validar_nulos(df, columnas_criticas):
         validar_nulos(df, ["nit", "valor_declarado", "estado"])
     """
     # TODO: Recorre columnas_criticas con un ciclo for.
-    # Para cada columna, calcula df[columna].isnull().sum().
-    # Si el resultado es mayor que 0, imprime el nombre de la columna
+    # Para cada columna, calcula si hay algún valor faltante y si lo hay imprime el nombre de la columna 
     # y la cantidad de nulos encontrados.
     pass
 
@@ -89,7 +88,10 @@ def validar_nulos(df, columnas_criticas):
 # Actualiza las llamadas a medida que implementas cada función.
 # =============================================================================
 if __name__ == "__main__":
-    df = cargar_declaraciones("data/inputs/declaraciones_iva_2025.csv")
-    inspeccionar_datos(df)
-    validar_nulos(df, ["nit", "valor_declarado", "estado"])
-    #def cargar_declaraciones()
+    #df = cargar_declaraciones("data/inputs/declaraciones_iva_2025.csv")
+    #inspeccionar_datos(df)
+    #validar_nulos(df, ["nit", "valor_declarado", "estado"])
+      #df = pd.read_csv("data/inputs/declaraciones_iva_2025.csv",  dtype={"nit": str, "codigo_municipio": str})
+    pass
+#print(df["codigo_municipio"].dtype)  
+#print(df["codigo_municipio"].iloc[0])
