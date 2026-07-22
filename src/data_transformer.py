@@ -78,7 +78,6 @@ def preparar_columnas_salida(df, columnas):
         df_salida = preparar_columnas_salida(df, ["nit", "valor_declarado", "nivel_riesgo"])
     """
     #pass
-    #df_salida = preparar_columnas_salida(df, ["nit", "valor_declarado", "nivel_riesgo"])
     df_salida = pd.DataFrame(df.copy(["nit", "valor_declarado", "nivel_riesgo"]))
 
 # =============================================================================

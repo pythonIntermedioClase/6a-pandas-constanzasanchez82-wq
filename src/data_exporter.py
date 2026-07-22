@@ -30,7 +30,11 @@ def exportar_csv(df, carpeta, nombre_base):
     # Construye el nombre del archivo
     # Construye la ruta completa
     # Exporta el resultado
-    pass
+    #pass
+    
+    fecha_hoy = date.today().strftime("%Y%m%d")
+    nombre_archivo = f"declaraciones_clasificadas_{fecha_hoy}.csv"
+    df_salida.to_csv(f"data/outputs/{nombre_archivo}", index=False)
 
 
 def exportar_excel_por_categoria(df, carpeta, nombre_base, columna_categoria):
@@ -65,9 +69,15 @@ def exportar_excel_por_categoria(df, carpeta, nombre_base, columna_categoria):
 # Actualiza las llamadas a medida que implementas cada función.
 # =============================================================================
 if __name__ == "__main__":
+    #df = pd.read_csv(
+    #    "data/inputs/declaraciones_iva_2025.csv",
+    #    dtype={"nit": str, "codigo_municipio": str},
+    #)
+    #exportar_csv(df, "data/outputs", "declaraciones_prueba")
+    #exportar_excel_por_categoria(df, "data/outputs", "declaraciones_prueba", "estado")
+    
     df = pd.read_csv(
         "data/inputs/declaraciones_iva_2025.csv",
         dtype={"nit": str, "codigo_municipio": str},
     )
     exportar_csv(df, "data/outputs", "declaraciones_prueba")
-    exportar_excel_por_categoria(df, "data/outputs", "declaraciones_prueba", "estado")
