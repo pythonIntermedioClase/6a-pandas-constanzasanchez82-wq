@@ -15,6 +15,9 @@ import pandas as pd
 from datetime import date
 
 from src.data_loader import cargar_declaraciones
+from src.data_transformer import clasificar_por_valor
+
+from src.data_loader import cargar_declaraciones
 
 # Sección 3:
 # from src.data_loader import cargar_declaraciones
@@ -174,9 +177,9 @@ def explorar_dataframe():
     print(df.columns)
     print(df.shape)
     df.to_excel("declaraciones_ejemplo.xlsx", index=False)
-    #pass   
+    pass   
 
-#df = pd.read_csv("data/inputs/declaraciones_iva_2025.csv")    
+df = pd.read_csv("data/inputs/declaraciones_iva_2025.csv")    
 #def cargar_declaraciones(ruta, columnas=None):    
 #pass
 
