@@ -7,7 +7,6 @@ Sesión 6: Pandas I — Python Intermedio para Análisis de Datos · DIAN 2026
 import numpy as np
 import pandas as pd
 
-
 def clasificar_por_valor(df, umbral_alto, umbral_medio):
     """
     Agrega la columna "nivel_riesgo" al DataFrame según el valor declarado.
@@ -28,7 +27,17 @@ def clasificar_por_valor(df, umbral_alto, umbral_medio):
     Ejemplos:
         df = clasificar_por_valor(df, umbral_alto=10_000_000, umbral_medio=5_000_000)
     """
-    pass
+    #pass
+    df["nivel_riesgo"] = np.where(
+    df["valor_declarado"] >= umbral_alto,
+    "Alto",
+    np.where(
+        df["valor_declarado"] >= umbral_medio,
+        "Medio",
+        "Bajo",
+    ),
+    )
+    return df
 
 
 def agregar_identificador_periodo(df):
@@ -48,8 +57,9 @@ def agregar_identificador_periodo(df):
         df = agregar_identificador_periodo(df)
         # df["identificador_periodo"].iloc[0] → "900123456-1_202401"
     """
-    pass
-
+    #pass
+    df = agregar_identificador_periodo(df)
+    df["identificador_periodo"].iloc[0]
 
 def preparar_columnas_salida(df, columnas):
     """
@@ -78,16 +88,25 @@ def preparar_columnas_salida(df, columnas):
 # Actualiza las llamadas a medida que implementas cada función.
 # =============================================================================
 if __name__ == "__main__":
+    #df = pd.read_csv(
+    #    "data/inputs/declaraciones_iva_2025.csv",
+    #    dtype={"nit": str, "codigo_municipio": str},
+    #)
+    #df = clasificar_por_valor(df, umbral_alto=10_000_000, umbral_medio=5_000_000)
+    #df = agregar_identificador_periodo(df)
+    #columnas = [
+    #    "identificador_periodo", "nit", "razon_social",
+    #    "municipio", "periodo", "valor_declarado", "nivel_riesgo", "estado",
+    #]
+    #df_salida = preparar_columnas_salida(df, columnas)
+    #print(df_salida.head())
+    #print(df["nivel_riesgo"].value_counts())
+    
     df = pd.read_csv(
-        "data/inputs/declaraciones_iva_2025.csv",
+        "../data/inputs/declaraciones_iva_2025.csv",
         dtype={"nit": str, "codigo_municipio": str},
     )
     df = clasificar_por_valor(df, umbral_alto=10_000_000, umbral_medio=5_000_000)
-    df = agregar_identificador_periodo(df)
-    columnas = [
-        "identificador_periodo", "nit", "razon_social",
-        "municipio", "periodo", "valor_declarado", "nivel_riesgo", "estado",
-    ]
-    df_salida = preparar_columnas_salida(df, columnas)
-    print(df_salida.head())
+    print(df[["nit", "valor_declarado", "nivel_riesgo"]].head(10))
     print(df["nivel_riesgo"].value_counts())
+    

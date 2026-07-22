@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 from datetime import date
 
-from src.data_loader import cargar_declaraciones
+from src.data_loader import cargar_declaraciones, inspeccionar_datos, validar_nulos
 from src.data_transformer import clasificar_por_valor
 
 from src.data_loader import cargar_declaraciones
@@ -110,7 +110,11 @@ def main():
         # Funciones disponibles: inspeccionar_datos(), validar_nulos()
         # -----------------------------------------------------------------
         elif opcion == "2":
-            pass
+            #pass
+            df = cargar_declaraciones("data/inputs/declaraciones_iva_2025.csv")
+            if df is not None:
+                 inspeccionar_datos(df)
+                 validar_nulos(df.COLUMNAS_CRITICAS)
 
         # -----------------------------------------------------------------
         # OPCIÓN 3: TRANSFORMACIÓN
@@ -179,7 +183,7 @@ def explorar_dataframe():
     df.to_excel("declaraciones_ejemplo.xlsx", index=False)
     pass   
 
-df = pd.read_csv("data/inputs/declaraciones_iva_2025.csv")    
+#df = pd.read_csv("data/inputs/declaraciones_iva_2025.csv")    
 #def cargar_declaraciones(ruta, columnas=None):    
 #pass
 
@@ -188,9 +192,14 @@ df = pd.read_csv("data/inputs/declaraciones_iva_2025.csv")
 # =============================================================================
 
 if __name__ == "__main__":
-    df= cargar_declaraciones("data/outputs/declaraciones_iva_2025.csv")
+    #df= cargar_declaraciones("data/outputs/declaraciones_iva_2025.csv")
     #revisar_declaracion()
     #probar_acceso_serie()
     #explorar_dataframe()  #basico
     #main()
-
+    #pass
+    def probar_np_where():
+        df = pd.read_csv("data/inputs/declaraciones_iva_2025.csv")
+        df["categoria"] = np.where(df["valor_declarado"] >= 5_000_000, "Alto", "Bajo", "Medio")
+    
+    probar_np_where()

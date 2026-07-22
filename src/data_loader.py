@@ -54,8 +54,14 @@ def inspeccionar_datos(df):
     Returns:
         None
     """
-    pass
-
+    #pass
+    print(df.shape)      # (filas, columnas) Dimensiones
+    print(df.dtypes)
+    print(df.value_counts)
+    print(df.unique)
+    print(df.nunique)
+    print(df.duplicated)
+    
 
 def validar_nulos(df, columnas_criticas):
     """
@@ -77,7 +83,11 @@ def validar_nulos(df, columnas_criticas):
     # TODO: Recorre columnas_criticas con un ciclo for.
     # Para cada columna, calcula si hay algún valor faltante y si lo hay imprime el nombre de la columna 
     # y la cantidad de nulos encontrados.
-    pass
+    #pass
+    for i in df.columns:
+        df.isnull().sum()
+      
+
 
 
 # =============================================================================
@@ -88,10 +98,18 @@ def validar_nulos(df, columnas_criticas):
 # Actualiza las llamadas a medida que implementas cada función.
 # =============================================================================
 if __name__ == "__main__":
-    #df = cargar_declaraciones("data/inputs/declaraciones_iva_2025.csv")
-    #inspeccionar_datos(df)
-    #validar_nulos(df, ["nit", "valor_declarado", "estado"])
-      #df = pd.read_csv("data/inputs/declaraciones_iva_2025.csv",  dtype={"nit": str, "codigo_municipio": str})
-    pass
+    df = cargar_declaraciones("data/inputs/declaraciones_iva_2025.csv")
+    inspeccionar_datos(df)
+    validar_nulos(df, ["nit", "valor_declarado", "estado"])
+      
+    #pass
 #print(df["codigo_municipio"].dtype)  
 #print(df["codigo_municipio"].iloc[0])
+    #df_completo = cargar_declaraciones("data/inputs/declaraciones_iva_2025.csv")
+    #df_reducido = cargar_declaraciones(
+    #    "data/inputs/declaraciones_iva_2025.csv",
+    #    columnas=["nit", "valor_declarado", "estado"],
+    #)
+    #print("Completo:", df_completo.shape)
+    #print("Reducido:", df_reducido.shape)
+    #print("Tipo de nit:", df_completo["nit"].dtype) 
