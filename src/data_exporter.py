@@ -34,7 +34,7 @@ def exportar_csv(df, carpeta, nombre_base):
     
     fecha_hoy = date.today().strftime("%Y%m%d")
     nombre_archivo = f"declaraciones_clasificadas_{fecha_hoy}.csv"
-    df_salida.to_csv(f"data/outputs/{nombre_archivo}", index=False)
+    df.to_csv(f"../data/outputs/{nombre_archivo}", index=False)
 
 
 def exportar_excel_por_categoria(df, carpeta, nombre_base, columna_categoria):
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     #exportar_excel_por_categoria(df, "data/outputs", "declaraciones_prueba", "estado")
     
     df = pd.read_csv(
-        "data/inputs/declaraciones_iva_2025.csv",
+        "../data/inputs/declaraciones_iva_2025.csv",
         dtype={"nit": str, "codigo_municipio": str},
     )
     exportar_csv(df, "data/outputs", "declaraciones_prueba")
